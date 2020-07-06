@@ -1,33 +1,34 @@
 #!/usr/bin/php -q
 <?php
+/*
+|------------------------------------------------------------------------------------------------|
+                                  | Bem vindo ao meu projeto |
+Esse script tem a função de buscar arquivos e diretorios pelo site desejado, ele  é um projeto
+elaborado a um tempo bem grande porém não tive tempo pra poder mexer nele. irei deixar essa versão
+disponivel porém futuramente essa versão será atualizada com diversas funções e pretendo trazer 
+uma grande ferramenta de Footprint.
+[*]Desenvolvedor: Jonathan Baskov(jord@rootExploit)
+[team]- Insanity Security Lab - MindsetSecurity 
+[Greetz] LILITH.NET - SR.STORM
+|-------------------------------------------------------------------------------------------------|
+*/
 error_reporting(0);
 exec(reset);
-/*
-|-------------------------------------------------------------------------------------------|
-
-  Bem vindo Ao Mind-Scanner, é uma versão simples feita
-  para analise de diretorios e arquivos de um site desejado
-
-  Não esqueça de dar as devidas permissões para o script. (chmod)
-  Fb = https://facebook.com/fail.org
-  Github = https://github.com/jord-baskov/
-  Blog = https://mindsetsecurity.wordpress.com
-  Greetz : Sr Storm - john-kaiser - L1L1TH - e geral ae :3 
-  Qualquer bug encontrado  poderá ser reportado para o email (jordison@protonmail.com)
-  codado no dia 12-01-2019
-|-------------------------------------------------------------------------------------------|
-*/
 $pag = file('.back.txt');
+//.back.txt é aonde vai estar todos os Diretórios e arquivos. vc mesmo pode acrescentar caso queira...
+//ele usa  a wordlist do dirb até que eu consiga gerar uma wordlist com  todos os diretorios manualmente 
+//
 echo "\033[31m
-     dBBBBb  dBP dBBBBBb         .dBBBBP   dBBBP dBBBBBb     dBBBBb
-        dB'          dBP         BP                   BB        dBP
-   dBP dB' dBP   dBBBBK          `BBBBb  dBP      dBP BB   dBP dBP
-  dBP dB' dBP   dBP  BB dBBBBBP     dBP dBP      dBP  BB  dBP dBP
- dBBBBB' dBP   dBP  dB'        dBBBBP' dBBBBP   dBBBBBBB dBP dBP \n
-                                  \033[36:2m[◉]Coded by Jord@Root-Exploit[◉]\n \033[31m
+███████╗ ██████╗ █████╗ ███╗   ██╗███╗   ██╗███████╗██████╗ ██████╗ ██╗██████╗ 
+██╔════╝██╔════╝██╔══██╗████╗  ██║████╗  ██║██╔════╝██╔══██╗██╔══██╗██║██╔══██╗
+███████╗██║     ███████║██╔██╗ ██║██╔██╗ ██║█████╗  ██████╔╝██║  ██║██║██████╔╝
+╚════██║██║     ██╔══██║██║╚██╗██║██║╚██╗██║██╔══╝  ██╔══██╗██║  ██║██║██╔══██╗
+███████║╚██████╗██║  ██║██║ ╚████║██║ ╚████║███████╗██║  ██║██████╔╝██║██║  ██║
+╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝╚═╝  ╚═╝\n
+\033[36:2m[◉]Coded by Jord@rootExploit[◉]\n \033[31m
 ";
 if(!$argv[1]){
-   echo("[!]WARNING[!]\nFalta de argumento!!!\npara usar digite ./scan.php https://site.com/\n\n");
+   echo("[!]WARNING[!]\nFalta de argumento!!!\npara usar digite ./scanner.php https://www.redhat.com/\n\n");
    exit();
 }
 $url = $argv[1];
@@ -39,6 +40,7 @@ foreach($pag as $link){
     $enviando = get_headers($mac)[0];
     $not = substr($enviando, 9, 3);
     if($not != 200 ){
+        //caso vd queira pode comentar essa parte pra que só  seja printado o request 200 
            echo "\033[0;31m";
            echo "[✘]Pag Não localizada──➤" . $url.$link . "\n";
     }else{
